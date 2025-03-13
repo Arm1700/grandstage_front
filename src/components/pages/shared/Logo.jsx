@@ -10,7 +10,7 @@ export default function Logo({loading = false, size = '127px'}) {
                 {loading ? (
                     <Skeleton width={size} height={size} circle={true}/>
                 ) : (
-                    <img src={'/logo.png'} width={size} alt="logo"/>
+                    <img src={'/logo.webp'} width={size} alt="logo"/>
                 )}
             </div>
         </Link>

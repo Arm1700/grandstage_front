@@ -10,7 +10,7 @@ export default function Certificates() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedImageIndex, setSelectedImageIndex] = useState(0);
     const { certificate, getImageUrl } = useContext(DataContext); // Используем контекст
-
+    const shouldEnableLoop = certificate.length > 4;
 
     const handleImageClick = (index) => {
         setSelectedImageIndex(index);
@@ -85,7 +85,7 @@ export default function Certificates() {
                         </div>
                         <div className="relative w-full h-full max-w-5xl max-h-[90%] flex items-center justify-center">
                             <Swiper
-                                loop={true}
+                                loop={shouldEnableLoop}
                                 initialSlide={selectedImageIndex} // Начинаем с выбранного изображения
                                 modules={[Navigation, A11y]}
                                 slidesPerView={1}

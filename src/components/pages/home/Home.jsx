@@ -41,6 +41,8 @@ export default function Home() {
         return () => window.removeEventListener("resize", updateSlidesToShow);
     }, []);
 
+    const shouldEnableLoop = courses.length > slidesToShow;
+
     return (
         <main>
             <div
@@ -73,7 +75,7 @@ export default function Home() {
                         qualified trainer, an international judge, a choreographer
                         and a TV personality. Born in Yerevan, Armenia she began
                         Latin and Ballroom dance training at the age of 11 at
-                        “Matador Dance Club” under the direction of Gevorg Markosyan.
+                        "Matador Dance Club" under the direction of Gevorg Markosyan.
                         As a teenager Varduhi revealed her passion and talent for
                         ballroom dance concentrating exclusively on dancing, competing
                         in local and international championships and making a
@@ -107,13 +109,13 @@ export default function Home() {
                             &lt;
                         </div>
                         <Swiper
-                            loop
+                            loop={shouldEnableLoop}
                             modules={[Navigation, A11y]}
                             navigation={{
                                 nextEl: '.custom-button-next',
                                 prevEl: '.custom-button-prev',
                             }}
-                            slidesPerView={slidesToShow}
+                            slidesPerView={Math.min(slidesToShow, courses.length)}
                             spaceBetween={50}
                             speed={500}
                             onSwiper={(swiper) => {

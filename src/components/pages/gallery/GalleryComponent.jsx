@@ -9,6 +9,7 @@ const GalleryComponent = ({ galleries }) => {
     const [selectedImageIndex, setSelectedImageIndex] = useState(0);
     const { getImageUrl } = useContext(DataContext);
 
+    const shouldEnableLoop = galleries.length > 3;
     const swiperRef5 = useRef(null);
     const handleImageClick = useCallback((index) => {
         setSelectedImageIndex(index); // Сбрасываем индекс выбранного изображения
@@ -63,7 +64,7 @@ const GalleryComponent = ({ galleries }) => {
                     </div>
                     <div className="relative w-full h-full max-w-5xl max-h-[90%] flex items-center justify-center">
                         <Swiper
-                            loop={true}
+                            loop={shouldEnableLoop}
                             initialSlide={selectedImageIndex} // Начинаем с выбранного изображения
                             modules={[Navigation, A11y]}
                             slidesPerView={1}

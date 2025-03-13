@@ -13,6 +13,7 @@ export default function Certificate({ slidesToShow }) {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+    const shouldEnableLoop = certificate.length > slidesToShow;
 
     const handleImageClick = (index) => {
         setSelectedImageIndex(index);
@@ -56,7 +57,7 @@ export default function Certificate({ slidesToShow }) {
                 &lt; {/* Левый символ */}
             </div>
             <Swiper
-                loop={true}
+                loop={shouldEnableLoop}
                 modules={[Navigation, A11y]}
                 navigation={{
                     nextEl: '.custom-button-next2',
@@ -111,7 +112,7 @@ export default function Certificate({ slidesToShow }) {
                     </div>
                     <div className="relative w-full h-full max-w-5xl max-h-[90%] flex items-center justify-center">
                         <Swiper
-                            loop={true}
+                            loop={shouldEnableLoop}
                             initialSlide={selectedImageIndex} // Начинаем с выбранного изображения
                             modules={[Navigation, A11y]}
                             slidesPerView={1}
