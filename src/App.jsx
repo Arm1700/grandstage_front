@@ -24,7 +24,6 @@ function App() {
             <PageUpButton/>
             <Header/>
             <Routes>
-                <Route path="/bio" element={<Bio/>}/>
                 <Route path="/events/:tab/:id" element={<EventsPage />} />
                 <Route path="/events/:tab" element={<Events />} />
                 <Route path="/course-category/:id" element={<CoursePage />}/>

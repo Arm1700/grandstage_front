@@ -20,9 +20,6 @@ export default function Home() {
     const swiperRef = useRef(null);
     const [slidesToShow, setSlidesToShow] = useState(4);
     const nav = useNavigate();
-    const handleCategoryClick = () => {
-        nav(`/bio`);
-    };
     const handleEventsClick = () => {
         nav(`/events`);
     };
@@ -64,29 +61,7 @@ export default function Home() {
                     </div>
                 </div>
             </div>
-            <div className={`flex flex-col lg:flex-row items-center justify-center py-10 p-5 gap-10`}>
-                <img src={'/images/Picture1.jpg'} className="cursor-pointer w-[70%] lg:w-auto" alt="Academy Founder" onClick={handleCategoryClick} />
-                <div className="flex flex-col justify-center items-center gap-10 lg:gap-5 lg:w-[30%] w-full">
-                    <p className="text-custom-28 text-color12 font-bold text-center">
-                        Hey there, my name is Varduhi Alexanyan. I am the founder of Grand Educational Center.
-                    </p>
-                    <p className="text-custom-15 text-color66 text-justify">
-                        Varduhi Aleksanyan is a professional dancer, a highly
-                        qualified trainer, an international judge, a choreographer
-                        and a TV personality. Born in Yerevan, Armenia she began
-                        Latin and Ballroom dance training at the age of 11 at
-                        "Matador Dance Club" under the direction of Gevorg Markosyan.
-                        As a teenager Varduhi revealed her passion and talent for
-                        ballroom dance concentrating exclusively on dancing, competing
-                        in local and international championships and making a
-                        career of professional dancer and trainer. <span className="cursor-pointer text-primary" onClick={handleCategoryClick}>Read more</span>
-                    </p>
-                    {/* <img
-                        src="/images/Image20241122131907.png"
-                        alt="Founder John Doe" width={"220"} /> */}
-                </div>
-            </div>
-
+            
             <div className="py-10 bg-colorF2">
                 <div
                     className="bg-cover bg-no-repeat max-w-[1300px] mx-auto flex justify-between flex-row md:flex-row xs:flex-col">
