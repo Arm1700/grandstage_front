@@ -75,10 +75,11 @@ export default function Certificate({ slidesToShow }) {
                         style={{
                             display: 'flex',
                             justifyContent: 'center',
+                            userSelect: 'none',
                         }}
                     >
                         <div
-                            className="py-[30px] border border-gray-300 flex justify-center flex-col gap-7"
+                            className="cursor-pointer py-[30px] border border-gray-300 flex justify-center flex-col gap-7"
                             onClick={() => handleImageClick(index)}
                             style={{
                                 textAlign: 'center',
@@ -88,7 +89,7 @@ export default function Certificate({ slidesToShow }) {
                             <img
                                 src={getImageUrl(img)}
                                 alt={`Certificate ${id}`}
-                                className="certificate-image max-w-full max-h-[200px] object-contain mx-auto"
+                                className=" certificate-image max-w-full max-h-[200px] object-contain mx-auto"
                                 style={{
                                     height: 'auto',
                                     maxHeight: '300px',
@@ -126,7 +127,7 @@ export default function Certificate({ slidesToShow }) {
                             onSlideChange={(swiper) => setSelectedImageIndex(swiper.activeIndex)}
                         >
                             {certificate.map(({ id, img }) => (
-                                <SwiperSlide key={id}>
+                                <SwiperSlide key={id} userSelect="none">
                                     <div className="flex justify-center items-center h-[80vh] select-none">
                                         <img src={getImageUrl(img)} alt={`Certificate ${id}`}
                                             className="max-w-full max-h-full object-contain" />

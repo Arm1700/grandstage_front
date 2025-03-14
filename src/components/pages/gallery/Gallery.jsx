@@ -1,12 +1,13 @@
 import React, {useContext, useState} from 'react';
 import GalleryComponent from './GalleryComponent';
 import {DataContext} from "../context/DataProvider";
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 export default function Gallery() {
     const [activeTab, setActiveTab] = useState(1);
 
-    const {courses} = useContext(DataContext); // Use context
-
+    const {courses, loading} = useContext(DataContext); // Use context and loading state
 
     // Определяем галереи для текущей вкладки
     const activeGalleries = activeTab === 0
@@ -21,29 +22,29 @@ export default function Gallery() {
             <div className="grid
              lg:grid-cols-6 sm:grid-cols-4 grid-cols-2
              w-full text-center">
-                {/*<button*/}
-                {/*    className={`${*/}
-                {/*        activeTab === 0*/}
-                {/*            ? 'border-b-[1px] border-primary text-primary'*/}
-                {/*            : 'text-color12'*/}
-                {/*    } focus:outline-none font-roboto-slab font-bold text-xl mx-16 pb-2 capitalize `}*/}
-                {/*    onClick={() => setActiveTab(0)}*/}
-                {/*>*/}
-                {/*    All*/}
-                {/*</button>*/}
-                {courses.map((tab) => (
-                    <button
-                        key={tab.id}
-                        className={`${
-                            activeTab === tab.id
-                                ? 'border-b-[1px] border-primary text-primary'
-                                : 'text-color12'
-                        } focus:outline-none font-roboto-slab font-bold text-xl  pb-2 capitalize `}
-                        onClick={() => setActiveTab(tab.id)}
-                    >
-                        {tab.name}
-                    </button>
-                ))}
+                {loading ? (
+                    // Skeleton loading for tabs
+                    Array(12).fill().map((_, index) => (
+                        <div key={`tab-skeleton-${index}`} className="pb-2">
+                            <Skeleton width="80%" height={30} />
+                        </div>
+                    ))
+                ) : (
+                    // Actual tabs
+                    courses.map((tab) => (
+                        <button
+                            key={tab.id}
+                            className={`${
+                                activeTab === tab.id
+                                    ? 'border-b-[1px] border-primary text-primary'
+                                    : 'text-color12'
+                            } focus:outline-none font-roboto-slab font-bold text-xl pb-2 capitalize `}
+                            onClick={() => setActiveTab(tab.id)}
+                        >
+                            {tab.name}
+                        </button>
+                    ))
+                )}
             </div>
             <div>
                 <GalleryComponent key={activeTab} activeTab={activeTab} galleries={activeGalleries}/>

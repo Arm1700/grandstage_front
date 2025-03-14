@@ -6,11 +6,19 @@ import {A11y, Navigation} from "swiper/modules";
 
 export default function Certificates() {
     const swiperRef4 = useRef(null);
-
+    const [isLoading, setIsLoading] = useState(true);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedImageIndex, setSelectedImageIndex] = useState(0);
     const { certificate, getImageUrl } = useContext(DataContext); // Используем контекст
     const shouldEnableLoop = certificate.length > 4;
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsLoading(false);
+        }, 1500);
+        
+        return () => clearTimeout(timer);
+    }, []);
 
     const handleImageClick = (index) => {
         setSelectedImageIndex(index);
@@ -52,26 +60,35 @@ export default function Certificates() {
             </div>
             <div>
                 <div className="grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-14 pt-5">
-                    {certificate.map((gallery, index) => (
-                        <div
-                            key={gallery.id}
-                            className="rounded cursor-pointer relative overflow-hidden"
-                        >
-                            <img
-                                src={getImageUrl(gallery.img)}
-                                alt={gallery.title || "Gallery Image"}
-                                className="transition-transform duration-300"
-                            />
+                    {isLoading ? (
+                        Array.from({ length: 8 }).map((_, index) => (
+                            <div key={`skeleton-${index}`} className="rounded overflow-hidden">
+                                <div className="animate-pulse bg-gray-200 w-full h-80"></div>
+                            </div>
+                        ))
+                    ) : (
+                        // Actual certificate items when loaded
+                        certificate.map((gallery, index) => (
                             <div
-                                className="absolute inset-0 bg-gray-600 opacity-0 hover:opacity-60 transition-opacity duration-300"
-                                onClick={() => handleImageClick(index)}
+                                key={gallery.id}
+                                className="rounded cursor-pointer relative overflow-hidden"
                             >
-                                <div className="flex justify-center items-center h-full">
-                                    <IoSearch className="text-white text-[30px] transition-transform duration-300 transform" />
+                                <img
+                                    src={getImageUrl(gallery.img)}
+                                    alt={gallery.title || "Gallery Image"}
+                                    className="transition-transform duration-300"
+                                />
+                                <div
+                                    className="absolute inset-0 bg-gray-600 opacity-0 hover:opacity-60 transition-opacity duration-300"
+                                    onClick={() => handleImageClick(index)}
+                                >
+                                    <div className="flex justify-center items-center h-full">
+                                        <IoSearch className="text-white text-[30px] transition-transform duration-300 transform" />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
+                        ))
+                    )}
                 </div>
 
                 {/* Модальное окно */}

@@ -9,7 +9,6 @@ import Error404 from "./components/pages/shared/Error";
 import CoursePage from "./components/pages/courses/[id]";
 import EventsPage from './components/pages/events/[id]';
 import Events from './components/pages/events/Events';
-import Bio from "./components/pages/shared/home/Bio";
 
 // import ComingSoonPage from "./components/pages/coming/ComingSoonPage";
 
